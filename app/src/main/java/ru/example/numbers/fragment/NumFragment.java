@@ -22,9 +22,6 @@ public class NumFragment extends Fragment implements ClickListener {
     private NumAdapter mAdapter;
     private int maxNumber = DEFAULT_VALUE;
 
-    public static final int COLUMNS_HORIZONTAL = 4;
-    public static final int COLUMNS_VERTICAL = 3;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -40,14 +37,10 @@ public class NumFragment extends Fragment implements ClickListener {
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
 
-        int horizontal = getResources().getBoolean(R.bool.orientation) ?
-                GridLayoutManager.HORIZONTAL : GridLayoutManager.VERTICAL;
+        int horizontal = getResources().getInteger(R.integer.orientation);
 
-        if (horizontal == GridLayoutManager.HORIZONTAL) {
-            recyclerView.setLayoutManager(new GridLayoutManager(view.getContext(), COLUMNS_HORIZONTAL));
-        } else {
-            recyclerView.setLayoutManager(new GridLayoutManager(view.getContext(), COLUMNS_VERTICAL));
-        }
+        recyclerView.setLayoutManager(new GridLayoutManager(view.getContext(), horizontal));
+
 
         mAdapter = new NumAdapter(maxNumber, this);
         recyclerView.setAdapter(mAdapter);
@@ -66,11 +59,11 @@ public class NumFragment extends Fragment implements ClickListener {
     }
 
     @Override
-    public void clickListener(int num, @ColorInt int color) {
+    public void onClick(int num, @ColorInt int color) {
         if (getActivity() == null || !(getActivity() instanceof ClickListener)) {
             return;
         }
 
-        ((ClickListener) getActivity()).clickListener(num, color);
+        ((ClickListener) getActivity()).onClick(num, color);
     }
 }

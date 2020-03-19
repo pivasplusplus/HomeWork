@@ -33,14 +33,14 @@ public class MainActivity extends AppCompatActivity implements ClickListener {
 
 
     @Override
-    public void clickListener(int num, @ColorInt int color) {
+    public void onClick(int num, @ColorInt int color) {
         showSingleFragment(num, color);
     }
 
     private void showSingleFragment(int number, @ColorInt int color) {
         singleFragment.setNumber(number, color);
 
-        if(getSupportFragmentManager().findFragmentByTag(SingleFragment.TAG) != null) {
+        if (getSupportFragmentManager().findFragmentByTag(SingleFragment.TAG) != null) {
             Log.wtf(MainActivity.class.toString(), "SingleFragment execute twice");
             return;
         }
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements ClickListener {
     }
 
     private void showNumFragment() {
-        if(getSupportFragmentManager().findFragmentByTag(NumFragment.TAG) != null) {
+        if (getSupportFragmentManager().findFragmentByTag(NumFragment.TAG) != null) {
             return;
         }
 

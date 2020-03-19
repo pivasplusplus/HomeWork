@@ -17,7 +17,7 @@ public class NumViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         numberButton = itemView.findViewById(R.id.numberButton);
         numberButton.setOnClickListener(v -> {
-                onNumberClickListener.clickListener(number, getColor(number));
+            onNumberClickListener.onClick(number, getColor(number));
         });
     }
 
